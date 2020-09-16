@@ -16,12 +16,15 @@ class App extends React.Component {
 
 
   search (term) {
-    axios.post ('/repos', {term}, (req, res) => {
-      console.log('res: ', res);
-      const userRepos = res.data;
-      this.setState({repose: userRepos});
-    });
-
+    axios.post ('/repos', {term})
+      .then((res) => {
+      const userRepos = res.data; //????
+      this.setState({repos: userRepos});
+      console.log('this.state.repos');
+      })
+      .catch(() => {
+        console.log('error');
+      });
     console.log(`${term} was searched`);
   }
 

@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/fetcher');
+mongoose.connect('mongodb://localhost/fetcher', {useMongoClient: true});
 
-// inside mangoose.once('open', function(){})?
 
 let repoSchema = mongoose.Schema({
   repoID: Number,
@@ -18,6 +17,7 @@ let Repo = mongoose.model('Repo', repoSchema);
     // TODO: Your code here
     // This function should save a repo or repos to
     // the MongoDB
+    console.log('inside the save function');
 
     let repo = new Repo({
       repoID: data.id,
